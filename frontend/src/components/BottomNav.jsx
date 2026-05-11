@@ -14,7 +14,7 @@ export default function BottomNav() {
   const { t } = useApp();
   return (
     <nav
-      className="fixed bottom-0 inset-x-0 z-40 qz-glass border-t border-black/5 pb-safe pt-2 px-3 flex justify-around items-center h-[72px]"
+      className="fixed bottom-0 inset-x-0 z-40 qz-glass border-t border-black/5 pb-safe pt-2 ps-3 pe-3 pr-[195px] flex justify-around items-center h-[72px]"
       data-testid="bottom-nav"
     >
       {items.map(({ to, key, icon: Icon, testid }) => (
