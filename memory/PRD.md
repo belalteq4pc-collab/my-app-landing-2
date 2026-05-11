@@ -27,6 +27,18 @@
 7. تتبع GPS مباشر مع watchPosition
 8. إعدادات: لغة، نصف قطر افتراضي، إشعارات، صوت، تتبع تلقائي
 
+### Phase 3 — Multi-language & Action Toggle (2026-01)
+- ✅ **17 لغة عالمية**: en, ar, es, fr, de, it, pt, ru, tr, id, zh, ja, ko, hi, fa, ur, he
+- ✅ خطوط مخصصة لكل سكريبت (Noto Sans SC/JP/KR/Devanagari, Vazirmatn, Heebo, Tajawal)
+- ✅ تطبيق RTL تلقائي للغات العبرية والفارسية والأردية والعربية
+- ✅ Fallback تلقائي للإنجليزية للمفاتيح المفقودة عبر deepMerge
+- ✅ منتقي اللغة في الإعدادات (native select بدلاً من pills) مع flags
+- ✅ **ActionToggle** (Silent أحمر / Ring أخضر) على كل بطاقة مكان
+- ✅ نفس التوجل في AddPlaceDialog ("Action on enter")
+- ✅ منطق الإشعار يفرّق بين Silent و Ring (entered_body vs entered_body_ring)
+- ✅ Backend: حقل `action` على Place + Share مع Literal['silent','ring'] validation
+- ✅ اختبار: Backend 24/24 (100%)، Frontend 100% على كل التدفقات
+
 ## Implemented (2026-01)
 - ✅ Backend API كامل: places/visits/stats مع validation + cascade delete
 - ✅ Frontend متعدد الصفحات: Home (خريطة + قريب)، Places، History، Settings
