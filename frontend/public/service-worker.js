@@ -6,7 +6,7 @@
  *  - Navigation requests: network-first with offline-page fallback (index.html)
  */
 
-const VERSION = "qz-v1";
+const VERSION = "qz-v2";
 const STATIC_CACHE = `${VERSION}-static`;
 const API_CACHE = `${VERSION}-api`;
 const TILE_CACHE = `${VERSION}-tiles`;
