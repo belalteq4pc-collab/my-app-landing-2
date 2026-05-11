@@ -39,6 +39,16 @@
 - ✅ كل العناصر التفاعلية لديها data-testid
 - ✅ اختبار شامل: Backend 100% (15/15)، Frontend ~95% (مشكلة overlay تم إصلاحها)
 
+### Phase 2 — Social Sharing (2026-01)
+- ✅ Backend: `/api/shares` POST/GET endpoints مع short id (10 hex) + view_count
+- ✅ ShareDialog موحد: QR Code (qrcode.react) + Copy Link + 5 أزرار وسائل تواصل (WhatsApp, Telegram, X, Facebook, Email) + Native Share API
+- ✅ زر مشاركة على كل بطاقة مكان (Places page)
+- ✅ زر "Share all my places" + "Share QuietZones app" في Settings
+- ✅ صفحة استيراد عامة `/s/:shareId` بدون bottom nav، خريطة، اختيار متعدد، استيراد جماعي
+- ✅ Snapshot immutable للأماكن المشتركة (لا تتأثر بحذف صاحبها)
+- ✅ ترجمة كاملة EN/AR للميزة
+- ✅ اختبار: Backend 21/21، Frontend 100% على تدفقات المشاركة
+
 ## Backlog (Priority Order)
 ### P1
 - Map picker tap-to-select داخل AddPlaceDialog (حالياً يدوي أو "موقعي الحالي")
