@@ -22,6 +22,8 @@ export default function AddPlaceDialog({ open, onClose, editing }) {
   const [pickingLoc, setPickingLoc] = useState(false);
   const [flyTrigger, setFlyTrigger] = useState(0);
 
+  // Initialize form ONLY when dialog opens (NOT on every GPS update)
+  // location is read once at open time, then ignored to avoid clobbering user input.
   useEffect(() => {
     if (!open) return;
     if (editing) {
@@ -45,7 +47,9 @@ export default function AddPlaceDialog({ open, onClose, editing }) {
         enabled: true,
       });
     }
-  }, [open, editing, location, settings.defaultRadius]);
+    setFlyTrigger((x) => x + 1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open, editing]);
 
   if (!open) return null;
 
