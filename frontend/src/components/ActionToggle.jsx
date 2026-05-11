@@ -11,6 +11,7 @@ import { BellOff, Bell } from "lucide-react";
  */
 export default function ActionToggle({ value = "silent", onChange, compact = false, testid }) {
   const { t } = useApp();
+  const labels = t.action || { silent: "Silent", ring: "Ring", title: "Action" };
   const isSilent = value === "silent";
   const pad = compact ? "px-2 py-1 text-[10px]" : "px-2.5 py-1.5 text-[11px]";
 
@@ -31,10 +32,10 @@ export default function ActionToggle({ value = "silent", onChange, compact = fal
             ? "bg-[#B85C5C] text-white shadow-sm shadow-[#B85C5C]/30"
             : "text-[#5D6D7E] hover:text-[#1C2833]"
         }`}
-        aria-label={t.action.silent}
+        aria-label={labels.silent}
       >
         <BellOff size={compact ? 10 : 12} strokeWidth={2.4} />
-        {t.action.silent}
+        {labels.silent}
       </button>
       <button
         type="button"
@@ -48,10 +49,10 @@ export default function ActionToggle({ value = "silent", onChange, compact = fal
             ? "bg-[#7B9E87] text-white shadow-sm shadow-[#7B9E87]/30"
             : "text-[#5D6D7E] hover:text-[#1C2833]"
         }`}
-        aria-label={t.action.ring}
+        aria-label={labels.ring}
       >
         <Bell size={compact ? 10 : 12} strokeWidth={2.4} />
-        {t.action.ring}
+        {labels.ring}
       </button>
     </div>
   );

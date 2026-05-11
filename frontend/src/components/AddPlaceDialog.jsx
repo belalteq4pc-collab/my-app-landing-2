@@ -287,7 +287,7 @@ export default function AddPlaceDialog({ open, onClose, editing }) {
 
           <div className="flex items-center justify-between bg-[#F7F5F0] rounded-xl px-4 py-3">
             <span className="text-sm font-medium text-[#1C2833]">
-              {t.action.title}
+              {t.action?.title || "Action on enter"}
             </span>
             <ActionToggle
               value={form.action}

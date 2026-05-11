@@ -233,8 +233,14 @@ export const translations = {
     notif: {
       entered_title: "دخلت {place}",
       entered_body: "أنت داخل {category}. الرجاء كتم صوت الهاتف.",
+      entered_body_ring: "أنت داخل {category}. فعّل وضع الرنين.",
       exited_title: "غادرت {place}",
       exited_body: "يمكنك إعادة تفعيل الرنين الآن.",
+    },
+    action: {
+      silent: "صامت",
+      ring: "رنين",
+      title: "الإجراء عند الدخول",
     },
     common: {
       saving: "جارٍ الحفظ...",
