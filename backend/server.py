@@ -74,6 +74,32 @@ class Visit(VisitCreate):
     timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 
+# Share snapshot (immutable copy of place data)
+class SharePlace(BaseModel):
+    name: str
+    category: CategoryType = "other"
+    lat: float
+    lng: float
+    radius_m: int = Field(default=100, ge=20, le=2000)
+    notes: Optional[str] = ""
+
+
+class ShareCreate(BaseModel):
+    user_id: str
+    title: Optional[str] = ""
+    places: List[SharePlace] = []
+
+
+class Share(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    id: str = Field(default_factory=lambda: uuid.uuid4().hex[:10])
+    user_id: str
+    title: str = ""
+    places: List[SharePlace] = []
+    view_count: int = 0
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+
 # ------------------- Routes -------------------
 @api_router.get("/")
 async def root():
@@ -179,6 +205,37 @@ async def stats(user_id: str = Query(...)):
         "exits": exits,
         "top_places": top_clean,
     }
+
+
+# ----- Shares -----
+@api_router.post("/shares", response_model=Share)
+async def create_share(payload: ShareCreate):
+    if not payload.places:
+        raise HTTPException(status_code=400, detail="No places to share")
+    if len(payload.places) > 50:
+        raise HTTPException(status_code=400, detail="Too many places (max 50)")
+    share = Share(
+        user_id=payload.user_id,
+        title=(payload.title or "").strip()[:120],
+        places=payload.places,
+    )
+    doc = share.model_dump()
+    doc["created_at"] = doc["created_at"].isoformat()
+    await db.shares.insert_one(doc)
+    return share
+
+
+@api_router.get("/shares/{share_id}", response_model=Share)
+async def get_share(share_id: str):
+    item = await db.shares.find_one({"id": share_id}, {"_id": 0})
+    if not item:
+        raise HTTPException(status_code=404, detail="Share not found")
+    # Increment view count (best-effort, don't block on it)
+    await db.shares.update_one({"id": share_id}, {"$inc": {"view_count": 1}})
+    item["view_count"] = (item.get("view_count") or 0) + 1
+    if isinstance(item.get("created_at"), str):
+        item["created_at"] = datetime.fromisoformat(item["created_at"])
+    return item
 
 
 app.include_router(api_router)

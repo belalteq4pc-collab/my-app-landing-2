@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useApp } from "@/context/AppContext";
-import { Bell, Volume2, MapPin, Globe, RotateCcw, Info, CheckCircle2 } from "lucide-react";
+import ShareDialog from "@/components/ShareDialog";
+import { Bell, Volume2, MapPin, Globe, RotateCcw, Info, CheckCircle2, Share2, Users } from "lucide-react";
 
 function Row({ icon: Icon, title, hint, children, testid }) {
   return (
@@ -39,10 +40,12 @@ function Toggle({ value, onChange, testid }) {
 }
 
 export default function SettingsPage() {
-  const { t, settings, setSettings, userId, requestNotifications, startTracking, stopTracking, tracking } = useApp();
+  const { t, settings, setSettings, userId, requestNotifications, startTracking, stopTracking, tracking, places } = useApp();
   const [notifGranted, setNotifGranted] = useState(
     typeof Notification !== "undefined" ? Notification.permission === "granted" : false
   );
+  const [shareOpen, setShareOpen] = useState(false);
+  const [shareMode, setShareMode] = useState("app");
 
   const handleEnableNotif = async () => {
     const ok = await requestNotifications();
@@ -59,6 +62,45 @@ export default function SettingsPage() {
       </header>
 
       <div className="space-y-3">
+        {/* Share section */}
+        <button
+          onClick={() => {
+            setShareMode("app");
+            setShareOpen(true);
+          }}
+          data-testid="share-app-btn"
+          className="w-full qz-card p-4 flex items-center gap-3 text-start hover:bg-black/[0.02] transition"
+        >
+          <div className="w-10 h-10 shrink-0 rounded-xl bg-[#E87A5D]/10 flex items-center justify-center text-[#E87A5D]">
+            <Share2 size={18} />
+          </div>
+          <div className="flex-1 min-w-0">
+            <h3 className="font-medium text-[#1C2833]">{t.share.share_app}</h3>
+            <p className="text-xs text-[#5D6D7E] mt-0.5">{t.share.share_app_hint}</p>
+          </div>
+        </button>
+
+        {places.length > 0 && (
+          <button
+            onClick={() => {
+              setShareMode("all");
+              setShareOpen(true);
+            }}
+            data-testid="share-all-places-btn"
+            className="w-full qz-card p-4 flex items-center gap-3 text-start hover:bg-black/[0.02] transition"
+          >
+            <div className="w-10 h-10 shrink-0 rounded-xl bg-[#7B9E87]/15 flex items-center justify-center text-[#7B9E87]">
+              <Users size={18} />
+            </div>
+            <div className="flex-1 min-w-0">
+              <h3 className="font-medium text-[#1C2833]">{t.share.share_all}</h3>
+              <p className="text-xs text-[#5D6D7E] mt-0.5">
+                {places.length} {t.nav.places.toLowerCase()}
+              </p>
+            </div>
+          </button>
+        )}
+
         <Row icon={Globe} title={t.settings.language} testid="settings-language">
           <div className="flex bg-[#F7F5F0] rounded-full p-1">
             {["en", "ar"].map((lng) => (
@@ -180,6 +222,12 @@ export default function SettingsPage() {
       <p className="text-center text-[11px] text-[#5D6D7E] mt-8">
         QuietZones · {t.app_tagline}
       </p>
+
+      <ShareDialog
+        open={shareOpen}
+        mode={shareMode}
+        onClose={() => setShareOpen(false)}
+      />
     </div>
   );
 }

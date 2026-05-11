@@ -2,9 +2,9 @@ import React from "react";
 import { useApp } from "@/context/AppContext";
 import { getCategory } from "@/lib/categories";
 import { distanceMeters, formatDistance } from "@/lib/geo";
-import { Pencil, Trash2 } from "lucide-react";
+import { Pencil, Trash2, Share2 } from "lucide-react";
 
-export default function PlaceCard({ place, onEdit, onDelete, compact = false }) {
+export default function PlaceCard({ place, onEdit, onDelete, onShare, compact = false }) {
   const { t, location, insidePlaceIds } = useApp();
   const cat = getCategory(place.category);
   const Icon = cat.icon;
@@ -49,7 +49,15 @@ export default function PlaceCard({ place, onEdit, onDelete, compact = false }) 
         )}
       </div>
       {!compact && (
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1">
+          <button
+            data-testid={`share-place-${place.id}`}
+            onClick={() => onShare && onShare(place)}
+            className="w-9 h-9 rounded-full flex items-center justify-center text-[#2C3E50] hover:bg-black/5 transition"
+            aria-label="share"
+          >
+            <Share2 size={16} />
+          </button>
           <button
             data-testid={`edit-place-${place.id}`}
             onClick={() => onEdit && onEdit(place)}

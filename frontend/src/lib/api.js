@@ -51,3 +51,11 @@ export async function getStats(userId) {
   const { data } = await api.get(`/stats`, { params: { user_id: userId } });
   return data;
 }
+export async function createShare(payload) {
+  const { data } = await api.post(`/shares`, payload);
+  return data;
+}
+export async function getShare(shareId) {
+  const { data } = await api.get(`/shares/${shareId}`);
+  return data;
+}

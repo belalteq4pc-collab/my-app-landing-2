@@ -1,12 +1,13 @@
 import React from "react";
 import "@/App.css";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, useLocation } from "react-router-dom";
 import { AppProvider, useApp } from "@/context/AppContext";
 import BottomNav from "@/components/BottomNav";
 import HomePage from "@/pages/HomePage";
 import PlacesPage from "@/pages/PlacesPage";
 import HistoryPage from "@/pages/HistoryPage";
 import SettingsPage from "@/pages/SettingsPage";
+import ImportPage from "@/pages/ImportPage";
 import { BellOff } from "lucide-react";
 
 function AppHeader() {
@@ -30,20 +31,35 @@ function AppHeader() {
   );
 }
 
+function MainLayout({ children }) {
+  return (
+    <>
+      <AppHeader />
+      <main>{children}</main>
+      <BottomNav />
+    </>
+  );
+}
+
 function Shell() {
+  const location = useLocation();
+  const isImportRoute = location.pathname.startsWith("/s/");
+
   return (
     <div className="min-h-screen bg-[#F7F5F0] text-[#1C2833] qz-grain">
       <div className="max-w-2xl mx-auto relative">
-        <AppHeader />
-        <main>
+        {isImportRoute ? (
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/places" element={<PlacesPage />} />
-            <Route path="/history" element={<HistoryPage />} />
-            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="/s/:shareId" element={<ImportPage />} />
           </Routes>
-        </main>
-        <BottomNav />
+        ) : (
+          <Routes>
+            <Route path="/" element={<MainLayout><HomePage /></MainLayout>} />
+            <Route path="/places" element={<MainLayout><PlacesPage /></MainLayout>} />
+            <Route path="/history" element={<MainLayout><HistoryPage /></MainLayout>} />
+            <Route path="/settings" element={<MainLayout><SettingsPage /></MainLayout>} />
+          </Routes>
+        )}
       </div>
     </div>
   );

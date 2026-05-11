@@ -2,12 +2,16 @@ import React, { useState } from "react";
 import { useApp } from "@/context/AppContext";
 import PlaceCard from "@/components/PlaceCard";
 import AddPlaceDialog from "@/components/AddPlaceDialog";
-import { Plus, MapPin } from "lucide-react";
+import ShareDialog from "@/components/ShareDialog";
+import { Plus, MapPin, Share2 } from "lucide-react";
 
 export default function PlacesPage() {
   const { t, places, removePlace } = useApp();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editing, setEditing] = useState(null);
+  const [shareOpen, setShareOpen] = useState(false);
+  const [shareMode, setShareMode] = useState("place");
+  const [sharePlace, setSharePlace] = useState(null);
 
   const handleEdit = (p) => {
     setEditing(p);
@@ -17,6 +21,18 @@ export default function PlacesPage() {
   const handleDelete = async (p) => {
     if (!confirm(`${t.actions.delete}: ${p.name}?`)) return;
     await removePlace(p.id);
+  };
+
+  const handleShare = (p) => {
+    setSharePlace(p);
+    setShareMode("place");
+    setShareOpen(true);
+  };
+
+  const handleShareAll = () => {
+    setSharePlace(null);
+    setShareMode("all");
+    setShareOpen(true);
   };
 
   return (
@@ -30,16 +46,28 @@ export default function PlacesPage() {
             {places.length} {t.nav.places.toLowerCase()}
           </p>
         </div>
-        <button
-          onClick={() => {
-            setEditing(null);
-            setDialogOpen(true);
-          }}
-          data-testid="add-place-header-btn"
-          className="w-11 h-11 rounded-full bg-[#E87A5D] text-white shadow-md shadow-[#E87A5D]/30 flex items-center justify-center hover:bg-[#D36A4F] active:scale-95 transition"
-        >
-          <Plus size={22} strokeWidth={2.4} />
-        </button>
+        <div className="flex items-center gap-2">
+          {places.length > 0 && (
+            <button
+              onClick={handleShareAll}
+              data-testid="share-all-btn"
+              className="w-11 h-11 rounded-full bg-[#2C3E50] text-white shadow-md shadow-[#2C3E50]/20 flex items-center justify-center hover:bg-[#1C2833] active:scale-95 transition"
+              aria-label={t.share.share_all}
+            >
+              <Share2 size={18} />
+            </button>
+          )}
+          <button
+            onClick={() => {
+              setEditing(null);
+              setDialogOpen(true);
+            }}
+            data-testid="add-place-header-btn"
+            className="w-11 h-11 rounded-full bg-[#E87A5D] text-white shadow-md shadow-[#E87A5D]/30 flex items-center justify-center hover:bg-[#D36A4F] active:scale-95 transition"
+          >
+            <Plus size={22} strokeWidth={2.4} />
+          </button>
+        </div>
       </header>
 
       {places.length === 0 ? (
@@ -53,7 +81,13 @@ export default function PlacesPage() {
       ) : (
         <div className="space-y-3 qz-fade-up">
           {places.map((p) => (
-            <PlaceCard key={p.id} place={p} onEdit={handleEdit} onDelete={handleDelete} />
+            <PlaceCard
+              key={p.id}
+              place={p}
+              onEdit={handleEdit}
+              onDelete={handleDelete}
+              onShare={handleShare}
+            />
           ))}
         </div>
       )}
@@ -65,6 +99,13 @@ export default function PlacesPage() {
           setDialogOpen(false);
           setEditing(null);
         }}
+      />
+
+      <ShareDialog
+        open={shareOpen}
+        mode={shareMode}
+        place={sharePlace}
+        onClose={() => setShareOpen(false)}
       />
     </div>
   );
