@@ -1,54 +1,60 @@
-import { useEffect } from "react";
+import React from "react";
 import "@/App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { AppProvider, useApp } from "@/context/AppContext";
+import BottomNav from "@/components/BottomNav";
+import HomePage from "@/pages/HomePage";
+import PlacesPage from "@/pages/PlacesPage";
+import HistoryPage from "@/pages/HistoryPage";
+import SettingsPage from "@/pages/SettingsPage";
+import { BellOff } from "lucide-react";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
-
-const Home = () => {
-  const helloWorldApi = async () => {
-    try {
-      const response = await axios.get(`${API}/`);
-      console.log(response.data.message);
-    } catch (e) {
-      console.error(e, `errored out requesting / api`);
-    }
-  };
-
-  useEffect(() => {
-    helloWorldApi();
-  }, []);
-
+function AppHeader() {
+  const { t } = useApp();
   return (
-    <div>
-      <header className="App-header">
-        <a
-          className="App-link"
-          href="https://emergent.sh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
-        </a>
-        <p className="mt-5">Building something incredible ~!</p>
-      </header>
-    </div>
+    <header className="px-5 pt-5 flex items-center justify-between" data-testid="app-header">
+      <Link to="/" className="flex items-center gap-2.5">
+        <div className="w-9 h-9 rounded-2xl bg-[#2C3E50] flex items-center justify-center text-white shadow-md shadow-[#2C3E50]/20">
+          <BellOff size={18} strokeWidth={2.2} />
+        </div>
+        <div className="leading-tight">
+          <h1 className="text-base font-bold text-[#1C2833] tracking-tight">
+            {t.app_name}
+          </h1>
+          <p className="text-[10px] uppercase tracking-widest text-[#5D6D7E] font-medium">
+            {t.app_tagline}
+          </p>
+        </div>
+      </Link>
+    </header>
   );
-};
+}
 
-function App() {
+function Shell() {
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+    <div className="min-h-screen bg-[#F7F5F0] text-[#1C2833] qz-grain">
+      <div className="max-w-2xl mx-auto relative">
+        <AppHeader />
+        <main>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/places" element={<PlacesPage />} />
+            <Route path="/history" element={<HistoryPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
+          </Routes>
+        </main>
+        <BottomNav />
+      </div>
     </div>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <AppProvider>
+      <BrowserRouter>
+        <Shell />
+      </BrowserRouter>
+    </AppProvider>
+  );
+}
