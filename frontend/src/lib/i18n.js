@@ -1,3 +1,5 @@
+import extra from "@/lib/translations_extra";
+
 export const translations = {
   en: {
     app_name: "QuietZones",
@@ -43,6 +45,7 @@ export const translations = {
       lat: "Latitude",
       lng: "Longitude",
       enabled: "Enabled",
+      action: "Action",
     },
     categories: {
       mosque: "Mosque",
@@ -87,8 +90,14 @@ export const translations = {
     notif: {
       entered_title: "Entered {place}",
       entered_body: "You're inside a {category}. Please silence your phone.",
+      entered_body_ring: "You're inside a {category}. Set phone to ring mode.",
       exited_title: "Left {place}",
       exited_body: "You can turn ringer back on.",
+    },
+    action: {
+      silent: "Silent",
+      ring: "Ring",
+      title: "Action on enter",
     },
     common: {
       saving: "Saving...",
@@ -179,6 +188,7 @@ export const translations = {
       lat: "خط العرض",
       lng: "خط الطول",
       enabled: "مفعّل",
+      action: "الإجراء",
     },
     categories: {
       mosque: "مسجد",
@@ -272,6 +282,23 @@ export const translations = {
     },
   },
 };
+
+// Merge in extra languages with English as fallback for any missing key
+function deepMerge(base, override) {
+  const out = { ...base };
+  for (const k in override) {
+    if (override[k] && typeof override[k] === "object" && !Array.isArray(override[k])) {
+      out[k] = deepMerge(base[k] || {}, override[k]);
+    } else {
+      out[k] = override[k];
+    }
+  }
+  return out;
+}
+
+for (const code in extra) {
+  translations[code] = deepMerge(translations.en, extra[code]);
+}
 
 export function getT(lang) {
   return translations[lang] || translations.en;

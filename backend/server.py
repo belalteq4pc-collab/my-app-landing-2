@@ -28,6 +28,8 @@ CategoryType = Literal[
     "hospital", "library", "work", "home", "other"
 ]
 
+ActionType = Literal["silent", "ring"]
+
 
 class PlaceBase(BaseModel):
     name: str
@@ -37,6 +39,7 @@ class PlaceBase(BaseModel):
     radius_m: int = Field(default=100, ge=20, le=2000)
     enabled: bool = True
     notes: Optional[str] = ""
+    action: ActionType = "silent"
 
 
 class PlaceCreate(PlaceBase):
@@ -51,6 +54,7 @@ class PlaceUpdate(BaseModel):
     radius_m: Optional[int] = Field(default=None, ge=20, le=2000)
     enabled: Optional[bool] = None
     notes: Optional[str] = None
+    action: Optional[ActionType] = None
 
 
 class Place(PlaceBase):
@@ -82,6 +86,7 @@ class SharePlace(BaseModel):
     lng: float
     radius_m: int = Field(default=100, ge=20, le=2000)
     notes: Optional[str] = ""
+    action: ActionType = "silent"
 
 
 class ShareCreate(BaseModel):

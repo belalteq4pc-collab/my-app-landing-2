@@ -4,6 +4,7 @@ import { CATEGORIES } from "@/lib/categories";
 import { X, Crosshair, Loader2 } from "lucide-react";
 import PlaceSearch from "@/components/PlaceSearch";
 import MapPicker from "@/components/MapPicker";
+import ActionToggle from "@/components/ActionToggle";
 
 export default function AddPlaceDialog({ open, onClose, editing }) {
   const { t, settings, addPlace, editPlace, location } = useApp();
@@ -17,6 +18,7 @@ export default function AddPlaceDialog({ open, onClose, editing }) {
     radius_m: settings.defaultRadius,
     notes: "",
     enabled: true,
+    action: "silent",
   });
   const [saving, setSaving] = useState(false);
   const [pickingLoc, setPickingLoc] = useState(false);
@@ -35,6 +37,7 @@ export default function AddPlaceDialog({ open, onClose, editing }) {
         radius_m: editing.radius_m ?? settings.defaultRadius,
         notes: editing.notes || "",
         enabled: editing.enabled !== false,
+        action: editing.action || "silent",
       });
     } else {
       setForm({
@@ -45,6 +48,7 @@ export default function AddPlaceDialog({ open, onClose, editing }) {
         radius_m: settings.defaultRadius,
         notes: "",
         enabled: true,
+        action: "silent",
       });
     }
     setFlyTrigger((x) => x + 1);
@@ -102,6 +106,7 @@ export default function AddPlaceDialog({ open, onClose, editing }) {
         radius_m: parseInt(form.radius_m, 10),
         notes: form.notes,
         enabled: form.enabled,
+        action: form.action,
       };
       if (isEdit) {
         await editPlace(editing.id, payload);
@@ -277,6 +282,17 @@ export default function AddPlaceDialog({ open, onClose, editing }) {
               onChange={(e) => setForm({ ...form, notes: e.target.value })}
               placeholder={t.place.notes_ph}
               className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#E87A5D] focus:ring-2 focus:ring-[#E87A5D]/20 outline-none text-sm resize-none"
+            />
+          </div>
+
+          <div className="flex items-center justify-between bg-[#F7F5F0] rounded-xl px-4 py-3">
+            <span className="text-sm font-medium text-[#1C2833]">
+              {t.action.title}
+            </span>
+            <ActionToggle
+              value={form.action}
+              onChange={(v) => setForm({ ...form, action: v })}
+              testid="dialog-action-toggle"
             />
           </div>
 

@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState, useRef, useCallb
 import { getUserId, listPlaces, createPlace as apiCreate, updatePlace as apiUpdate, deletePlace as apiDelete, listVisits, createVisit, clearVisits as apiClearVisits } from "@/lib/api";
 import { distanceMeters } from "@/lib/geo";
 import { getT, tFormat } from "@/lib/i18n";
+import { getLanguage } from "@/lib/languages";
 
 const AppContext = createContext(null);
 export const useApp = () => useContext(AppContext);
@@ -37,10 +38,12 @@ export function AppProvider({ children }) {
   const watchIdRef = useRef(null);
   const insideRef = useRef(new Set());
 
-  // Apply language direction
+  // Apply language direction + font
   useEffect(() => {
-    document.documentElement.dir = settings.lang === "ar" ? "rtl" : "ltr";
+    const lang = getLanguage(settings.lang);
+    document.documentElement.dir = lang.dir;
     document.documentElement.lang = settings.lang;
+    document.body.style.fontFamily = lang.font;
   }, [settings.lang]);
 
   // Persist settings
@@ -146,9 +149,10 @@ export function AppProvider({ children }) {
         const place = places.find((x) => x.id === id);
         if (!place) return;
         const catLabel = t.categories[place.category] || place.category;
+        const isRing = place.action === "ring";
         fireNotification(
           tFormat(t.notif.entered_title, { place: place.name }),
-          tFormat(t.notif.entered_body, { category: catLabel })
+          tFormat(isRing ? t.notif.entered_body_ring : t.notif.entered_body, { category: catLabel })
         );
         createVisit({
           user_id: userId,

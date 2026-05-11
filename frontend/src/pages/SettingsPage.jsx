@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useApp } from "@/context/AppContext";
 import ShareDialog from "@/components/ShareDialog";
-import { Bell, Volume2, MapPin, Globe, RotateCcw, Info, CheckCircle2, Share2, Users } from "lucide-react";
+import { LANGUAGES } from "@/lib/languages";
+import { Bell, Volume2, MapPin, Globe, RotateCcw, Info, CheckCircle2, Share2, Users, ChevronDown } from "lucide-react";
 
 function Row({ icon: Icon, title, hint, children, testid }) {
   return (
@@ -102,22 +103,18 @@ export default function SettingsPage() {
         )}
 
         <Row icon={Globe} title={t.settings.language} testid="settings-language">
-          <div className="flex bg-[#F7F5F0] rounded-full p-1">
-            {["en", "ar"].map((lng) => (
-              <button
-                key={lng}
-                data-testid={`lang-${lng}`}
-                onClick={() => setSettings({ ...settings, lang: lng })}
-                className={`px-3 py-1 text-xs font-semibold rounded-full transition ${
-                  settings.lang === lng
-                    ? "bg-[#E87A5D] text-white shadow"
-                    : "text-[#5D6D7E]"
-                }`}
-              >
-                {t.common.languages[lng]}
-              </button>
+          <select
+            value={settings.lang}
+            onChange={(e) => setSettings({ ...settings, lang: e.target.value })}
+            data-testid="lang-select"
+            className="bg-[#F7F5F0] border border-black/10 rounded-full px-3 py-1.5 text-xs font-semibold text-[#1C2833] outline-none focus:border-[#E87A5D] cursor-pointer max-w-[140px]"
+          >
+            {LANGUAGES.map((l) => (
+              <option key={l.code} value={l.code} data-testid={`lang-${l.code}`}>
+                {l.flag} {l.name}
+              </option>
             ))}
-          </div>
+          </select>
         </Row>
 
         <Row

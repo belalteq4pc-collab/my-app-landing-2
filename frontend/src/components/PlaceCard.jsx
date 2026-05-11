@@ -3,13 +3,23 @@ import { useApp } from "@/context/AppContext";
 import { getCategory } from "@/lib/categories";
 import { distanceMeters, formatDistance } from "@/lib/geo";
 import { Pencil, Trash2, Share2 } from "lucide-react";
+import ActionToggle from "@/components/ActionToggle";
 
 export default function PlaceCard({ place, onEdit, onDelete, onShare, compact = false }) {
-  const { t, location, insidePlaceIds } = useApp();
+  const { t, location, insidePlaceIds, editPlace } = useApp();
   const cat = getCategory(place.category);
   const Icon = cat.icon;
   const inside = insidePlaceIds.has(place.id);
   const dist = location ? distanceMeters(location.lat, location.lng, place.lat, place.lng) : null;
+
+  const handleActionChange = async (next) => {
+    if (next === place.action) return;
+    try {
+      await editPlace(place.id, { action: next });
+    } catch (e) {
+      console.error("update action failed", e);
+    }
+  };
 
   return (
     <div
@@ -47,6 +57,14 @@ export default function PlaceCard({ place, onEdit, onDelete, onShare, compact = 
         {!compact && place.notes && (
           <p className="text-xs text-[#5D6D7E] mt-1 italic line-clamp-1">{place.notes}</p>
         )}
+        <div className="mt-2">
+          <ActionToggle
+            value={place.action || "silent"}
+            onChange={handleActionChange}
+            compact={compact}
+            testid={`action-toggle-${place.id}`}
+          />
+        </div>
       </div>
       {!compact && (
         <div className="flex items-center gap-1">
