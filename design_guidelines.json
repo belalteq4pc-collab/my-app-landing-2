@@ -1,0 +1,118 @@
+{
+  "theme": {
+    "archetype": "Archetype 1 (Organic & Earthy)",
+    "mode": "light",
+    "description": "A calm, respectful, and grounded theme suitable for an app that manages silence in sacred or serious places. Avoids clinical tech colors in favor of warm, human-centric tones."
+  },
+  "typography": {
+    "strategy": "Bilingual Support (English/Arabic)",
+    "font_families": {
+      "english_headings": "'Outfit', sans-serif",
+      "english_body": "'Outfit', sans-serif",
+      "arabic_headings": "'Tajawal', sans-serif",
+      "arabic_body": "'Tajawal', sans-serif"
+    },
+    "hierarchy": {
+      "h1": "text-3xl sm:text-4xl tracking-tight font-bold",
+      "h2": "text-xl sm:text-2xl tracking-tight font-semibold",
+      "h3": "text-lg font-medium",
+      "body": "text-base leading-relaxed",
+      "small": "text-sm text-secondary font-medium tracking-wide"
+    }
+  },
+  "colors": {
+    "background": {
+      "base": "#F7F5F0",
+      "surface": "#FFFFFF",
+      "glass": "rgba(255, 255, 255, 0.85)"
+    },
+    "text": {
+      "primary": "#1C2833",
+      "secondary": "#5D6D7E",
+      "inverse": "#FFFFFF"
+    },
+    "brand": {
+      "primary": "#E87A5D",
+      "primary_hover": "#D36A4F",
+      "secondary": "#2C3E50",
+      "jade_active": "#7B9E87"
+    },
+    "map_geofence": {
+      "fill": "rgba(232, 122, 93, 0.2)",
+      "stroke": "#E87A5D"
+    }
+  },
+  "layout_and_spacing": {
+    "strategy": "Mobile-first, App-like feel, Bottom Navigation",
+    "global_padding": "p-4 sm:p-6",
+    "border_radius": {
+      "card": "rounded-2xl",
+      "pill": "rounded-full",
+      "button": "rounded-xl",
+      "map_container": "rounded-b-[2rem]"
+    },
+    "rtl_guidelines": "Use Tailwind logical properties exclusively: ps-*, pe-*, ms-*, me-*, text-start, text-end, rounded-s-*, border-s-* instead of pl-*, pr-*, etc. This ensures automatic flipping when HTML dir='rtl'."
+  },
+  "components": {
+    "BottomNav": {
+      "style": "fixed bottom-0 w-full z-50 backdrop-blur-xl bg-white/85 border-t border-[#2C3E50]/5 pb-safe pt-2 px-4 flex justify-around items-center h-20",
+      "interaction": "Active state receives Terracotta (#E87A5D) color and slight upward translation."
+    },
+    "FloatingActionButton": {
+      "style": "fixed bottom-28 end-6 z-50 w-14 h-14 bg-[#E87A5D] text-white rounded-full shadow-lg shadow-[#E87A5D]/30 flex items-center justify-center transition-transform hover:scale-105 active:scale-95"
+    },
+    "StatusPill": {
+      "style": "absolute top-6 start-1/2 -translate-x-1/2 z-40 bg-white/90 backdrop-blur-md px-6 py-3 rounded-full shadow-md shadow-black/5 flex items-center gap-3 whitespace-nowrap border border-black/5",
+      "states": {
+        "normal": "text-[#2C3E50] icon: lucide-bell",
+        "silent": "text-[#7B9E87] icon: lucide-bell-off bg-[#7B9E87]/10 border-[#7B9E87]/20"
+      }
+    },
+    "MapHero": {
+      "style": "w-full h-[60vh] rounded-b-[2rem] overflow-hidden shadow-sm z-10 relative"
+    },
+    "PlaceCard": {
+      "style": "bg-white p-5 rounded-2xl shadow-sm border border-black/5 flex items-center gap-4 active:bg-gray-50 transition-colors"
+    }
+  },
+  "motion": {
+    "page_transitions": "Fade and slight slide up (using framer-motion).",
+    "micro_interactions": "Tap scaling (active:scale-95) on buttons and cards. Smooth color transitions on hover."
+  },
+  "icons": {
+    "library": "lucide-react",
+    "mapping": {
+      "mosque": "Moon",
+      "church": "Cross",
+      "school": "GraduationCap",
+      "university": "Library",
+      "hospital": "Activity",
+      "library": "BookOpen",
+      "work": "Briefcase",
+      "home": "Home",
+      "settings": "Settings",
+      "list": "List",
+      "map": "MapPin"
+    }
+  },
+  "media": {
+    "image_urls": [
+      {
+        "url": "https://images.unsplash.com/photo-1761207301519-fdae4b6aea97?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxNzV8MHwxfHNlYXJjaHwyfHxwZWFjZWZ1bCUyMHplbiUyMHNhbmR8ZW58MHx8fHwxNzc4NDU4MjEzfDA&ixlib=rb-4.1.0&q=85",
+        "category": "empty_state",
+        "description": "A single dark stone rests on a sandy beach. Use this for the 'No places saved' empty state to evoke calm."
+      }
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Initialize React with react-i18next for Arabic/English toggle.",
+    "Use standard Tailwind logical properties (ps, pe, ms, me, text-start, text-end).",
+    "Ensure HTML 'dir' attribute updates dynamically when language changes (rtl for Arabic, ltr for English).",
+    "Install leaflet and react-leaflet. The map should be the primary view (Home tab).",
+    "Create a mock GPS tracker using a simple interval that updates user location on the map to demonstrate entering/exiting a geofence.",
+    "When user location intersects a saved place's geofence circle, trigger a browser notification and update the StatusPill.",
+    "Use data-testid on all interactive elements (e.g., data-testid='add-place-fab', data-testid='bottom-nav-home').",
+    "Inject Google Fonts for 'Outfit' and 'Tajawal' in index.html or global css.",
+    "Implement Shadcn UI for the Add/Edit Place modal (Dialog) and Settings forms, styled softly to match the archetype."
+  ]
+}
