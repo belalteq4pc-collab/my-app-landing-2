@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useApp } from "@/context/AppContext";
 import { CATEGORIES } from "@/lib/categories";
 import { X, Crosshair, Loader2 } from "lucide-react";
+import PlaceSearch from "@/components/PlaceSearch";
+import MapPicker from "@/components/MapPicker";
 
 export default function AddPlaceDialog({ open, onClose, editing }) {
   const { t, settings, addPlace, editPlace, location } = useApp();
@@ -18,6 +20,7 @@ export default function AddPlaceDialog({ open, onClose, editing }) {
   });
   const [saving, setSaving] = useState(false);
   const [pickingLoc, setPickingLoc] = useState(false);
+  const [flyTrigger, setFlyTrigger] = useState(0);
 
   useEffect(() => {
     if (!open) return;
@@ -56,11 +59,30 @@ export default function AddPlaceDialog({ open, onClose, editing }) {
           lat: pos.coords.latitude.toFixed(6),
           lng: pos.coords.longitude.toFixed(6),
         }));
+        setFlyTrigger((x) => x + 1);
         setPickingLoc(false);
       },
       () => setPickingLoc(false),
       { enableHighAccuracy: true, timeout: 10000 }
     );
+  };
+
+  const handleSearchSelect = (r) => {
+    setForm((f) => ({
+      ...f,
+      name: f.name || r.name || "",
+      lat: r.lat.toFixed(6),
+      lng: r.lng.toFixed(6),
+    }));
+    setFlyTrigger((x) => x + 1);
+  };
+
+  const handleMapPick = ({ lat, lng }) => {
+    setForm((f) => ({
+      ...f,
+      lat: lat.toFixed(6),
+      lng: lng.toFixed(6),
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -115,6 +137,11 @@ export default function AddPlaceDialog({ open, onClose, editing }) {
         </div>
 
         <form onSubmit={handleSubmit} className="p-5 space-y-4">
+          <PlaceSearch
+            onSelect={handleSearchSelect}
+            placeholder={t.actions.search_place}
+          />
+
           <div>
             <label className="text-sm font-medium text-[#5D6D7E] mb-1.5 block">
               {t.place.name}
@@ -190,6 +217,15 @@ export default function AddPlaceDialog({ open, onClose, editing }) {
               />
             </div>
           </div>
+
+          <MapPicker
+            lat={parseFloat(form.lat)}
+            lng={parseFloat(form.lng)}
+            radius_m={parseInt(form.radius_m, 10)}
+            onPick={handleMapPick}
+            flyTrigger={flyTrigger}
+            height={220}
+          />
 
           <button
             type="button"

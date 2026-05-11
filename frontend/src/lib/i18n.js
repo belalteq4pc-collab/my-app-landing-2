@@ -29,6 +29,8 @@ export const translations = {
       pick_on_map: "Tap map to pick location",
       clear_history: "Clear history",
       try_demo: "Try a demo place",
+      search_place: "Search for a place...",
+      tap_map_hint: "Tap on the map to set location",
     },
     place: {
       name: "Place name",
@@ -163,6 +165,8 @@ export const translations = {
       pick_on_map: "اضغط على الخريطة لتحديد الموقع",
       clear_history: "مسح السجل",
       try_demo: "تجربة مكان توضيحي",
+      search_place: "ابحث عن مكان...",
+      tap_map_hint: "اضغط على الخريطة لتحديد الموقع",
     },
     place: {
       name: "اسم المكان",

@@ -1,0 +1,27 @@
+{
+  "summary": "Frontend-only testing of QuietZones FIX 1 (free-pan map + recenter-btn), FIX 2 (embedded MapPicker click-to-pick in AddPlaceDialog), FIX 3 (Nominatim place search). All three fixes verified working end-to-end on Riyadh fake geolocation (24.7136, 46.6753).",
+  "backend_issues": { "critical": [], "minor": [] },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "PlaceSearch.jsx: Nominatim usage policy requires a descriptive User-Agent/Referer; browser fetch sends default Referer which is usually OK but for production-volume traffic OSM may block. Consider self-hosted geocoder or a back-end proxy long-term.",
+    "PlaceSearch.jsx: Loading flag never set false on AbortError - if user types fast, the spinner could remain visible after an aborted request (minor; subsequent debounced fetch will re-toggle).",
+    "PlaceSearch.jsx: Results dropdown closes only after pick or new query; clicking outside the input does not close it. Add an onBlur or outside-click handler for polish.",
+    "MapView.jsx FlyToTrigger uses flyTo with duration:0.8 - on slow devices the animation may queue up if user double-clicks recenter-btn quickly; consider stopping animation first (map.stop()) before flyTo.",
+    "MapPicker.jsx Recenterer effect calls map.setView on every pos change (not only via flyTrigger) because pos is in the dependency array. This means the picker WILL recenter every time lat/lng updates (e.g., after user clicks map). For a tap-to-pick this is acceptable but you may prefer to only recenter on explicit trigger - currently the dep array is [trigger, pos, map] which fires on both. Functionally fine in tests.",
+    "AddPlaceDialog.jsx parses parseFloat(form.lat) for MapPicker even when empty string -> NaN; component guards with Number.isFinite so safe, but emits an empty map (no marker) until user picks - which is intended."
+  ],
+  "updated_files": [],
+  "success_rate": { "backend": "n/a (frontend only)", "frontend": "100% on all 3 fixes" },
+  "test_credentials": "None",
+  "seed_data_creation": "None - no places persisted in this iteration.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Selectors verified working: recenter-btn (Home), add-place-fab, add-place-dialog, place-search-input, place-search, search-results, search-result-0..N, map-picker, place-name-input, place-lat-input, place-lng-input, use-current-location-btn, close-add-place. FIX 1: dragged map 150px and waited 3.5s - did NOT auto-recenter (verified visually - user marker offset). FIX 2: clicking map-picker updated lat/lng inputs (48.858890 -> 48.857502). FIX 3: typing 'Paris' returned Nominatim results within ~2s after 450ms debounce; clicking search-result-0 set lat=48.858890, lng=2.320041, name='Paris' and recentered MapPicker via flyTrigger. 'No results' message appears for bogus query 'zzqqxxooppllkkjj'. EN placeholder = 'Search for a place...'. AR placeholder NOT directly toggled because the language toggle data-testid 'lang-toggle-ar' was not found on /settings - the strings ARE present in i18n.js for both EN/AR (search_place + tap_map_hint) so translation should work; main agent may want to verify Arabic toggle selector if needed.",
+  "rca of the issue": "n/a - all 3 fixes work as designed."
+}

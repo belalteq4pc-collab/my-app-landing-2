@@ -1,23 +1,37 @@
-import React from "react";
-import { MapContainer, TileLayer, Marker, Circle, Popup, useMap } from "react-leaflet";
+import React, { useRef, useEffect } from "react";
+import { MapContainer, TileLayer, Marker, Circle, Popup, useMap, useMapEvents } from "react-leaflet";
 import L from "leaflet";
 import { getCategory } from "@/lib/categories";
 import { useApp } from "@/context/AppContext";
+import { Locate } from "lucide-react";
 
-// Recenter helper
-function Recenter({ center, fly = false }) {
+// Recenter helper: only flies to center on FIRST valid value (not on every update)
+function InitialCenter({ center }) {
   const map = useMap();
-  React.useEffect(() => {
-    if (!center) return;
-    if (fly) map.flyTo(center, map.getZoom(), { duration: 0.8 });
-    else map.setView(center, map.getZoom());
-  }, [center, fly, map]);
+  const hasCentered = useRef(false);
+  useEffect(() => {
+    if (!center || hasCentered.current) return;
+    map.setView(center, map.getZoom());
+    hasCentered.current = true;
+  }, [center, map]);
+  return null;
+}
+
+// Imperative "fly to" trigger
+function FlyToTrigger({ target, trigger }) {
+  const map = useMap();
+  useEffect(() => {
+    if (!target || trigger == null) return;
+    map.flyTo(target, Math.max(map.getZoom(), 15), { duration: 0.8 });
+  }, [trigger, target, map]);
   return null;
 }
 
 function PickHandler({ onPick }) {
-  useMap().on("click", (e) => {
-    if (onPick) onPick({ lat: e.latlng.lat, lng: e.latlng.lng });
+  useMapEvents({
+    click(e) {
+      if (onPick) onPick({ lat: e.latlng.lat, lng: e.latlng.lng });
+    },
   });
   return null;
 }
@@ -31,7 +45,6 @@ const userIcon = L.divIcon({
 
 function placeIcon(category) {
   const cat = getCategory(category);
-  // We render the icon using a div + svg-less approach using a colored marker
   return L.divIcon({
     className: "",
     html: `<div class="qz-place-marker" style="background:${cat.color}">
@@ -44,12 +57,13 @@ function placeIcon(category) {
 
 export default function MapView({ height = "60vh", onPickLocation, showZoomControl = true }) {
   const { places, location, insidePlaceIds } = useApp();
+  const [flyTick, setFlyTick] = React.useState(0);
 
   const center = location
     ? [location.lat, location.lng]
     : places[0]
     ? [places[0].lat, places[0].lng]
-    : [24.7136, 46.6753]; // Riyadh as fallback default
+    : [24.7136, 46.6753];
 
   return (
     <div
@@ -69,10 +83,11 @@ export default function MapView({ height = "60vh", onPickLocation, showZoomContr
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
+        <InitialCenter center={location ? [location.lat, location.lng] : null} />
         {location && (
           <>
             <Marker position={[location.lat, location.lng]} icon={userIcon} />
-            <Recenter center={[location.lat, location.lng]} fly />
+            <FlyToTrigger target={[location.lat, location.lng]} trigger={flyTick} />
           </>
         )}
 
@@ -108,6 +123,17 @@ export default function MapView({ height = "60vh", onPickLocation, showZoomContr
 
         {onPickLocation && <PickHandler onPick={onPickLocation} />}
       </MapContainer>
+
+      {location && (
+        <button
+          onClick={() => setFlyTick((x) => x + 1)}
+          data-testid="recenter-btn"
+          className="absolute bottom-4 end-4 z-[400] w-11 h-11 rounded-full bg-white shadow-lg border border-black/5 flex items-center justify-center text-[#E87A5D] hover:bg-[#E87A5D] hover:text-white active:scale-95 transition"
+          aria-label="Center on me"
+        >
+          <Locate size={18} strokeWidth={2.2} />
+        </button>
+      )}
     </div>
   );
 }
