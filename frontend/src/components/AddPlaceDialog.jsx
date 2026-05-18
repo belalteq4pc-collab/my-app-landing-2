@@ -81,6 +81,9 @@ export default function AddPlaceDialog({ open, onClose, editing }) {
       name: f.name || r.name || "",
       lat: r.lat.toFixed(6),
       lng: r.lng.toFixed(6),
+      // Auto-infer category from search result when current is the default 'mosque'
+      // or if user hasn't customized it yet
+      category: r.category && (f.category === "mosque" || !f.category) ? r.category : f.category,
     }));
     setFlyTrigger((x) => x + 1);
   };

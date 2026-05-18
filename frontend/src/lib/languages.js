@@ -16,7 +16,6 @@ export const LANGUAGES = [
   { code: "hi", name: "हिन्दी", dir: "ltr", font: "'Noto Sans Devanagari', sans-serif", flag: "🇮🇳" },
   { code: "fa", name: "فارسی", dir: "rtl", font: "'Vazirmatn', sans-serif", flag: "🇮🇷" },
   { code: "ur", name: "اردو", dir: "rtl", font: "'Noto Nastaliq Urdu', serif", flag: "🇵🇰" },
-  { code: "he", name: "עברית", dir: "rtl", font: "'Heebo', sans-serif", flag: "🇮🇱" },
 ];
 
 export function getLanguage(code) {

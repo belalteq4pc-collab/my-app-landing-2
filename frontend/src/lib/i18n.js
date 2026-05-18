@@ -2,7 +2,7 @@ import extra from "@/lib/translations_extra";
 
 export const translations = {
   en: {
-    app_name: "QuietZones",
+    app_name: "Quiet Zones Reminder",
     app_tagline: "Smart Silent Reminder",
     nav: {
       home: "Map",
@@ -145,7 +145,7 @@ export const translations = {
     },
   },
   ar: {
-    app_name: "كويت زونز",
+    app_name: "كويت زونز ريمايندر",
     app_tagline: "تذكير الصمت الذكي",
     nav: {
       home: "الخريطة",

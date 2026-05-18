@@ -3,7 +3,7 @@
 
 const T = {
   es: {
-    app_name: "QuietZones",
+    app_name: "Quiet Zones Reminder",
     app_tagline: "Recordatorio silencioso inteligente",
     nav: { home: "Mapa", places: "Lugares", history: "Historial", settings: "Ajustes" },
     status: { normal: "Modo timbre", silent: "Recordatorio silencio", inside: "Dentro", outside_all: "Fuera de zonas", tracking_off: "Seguimiento pausado", tracking_on: "Seguimiento activo" },
@@ -19,7 +19,7 @@ const T = {
     share: { share: "Compartir", share_place: "Compartir este lugar", share_all: "Compartir todos", share_app: "Compartir QuietZones", share_app_hint: "Invita amigos a usar los recordatorios silenciosos", copy_link: "Copiar enlace", copied: "¡Copiado!", qr_hint: "Escanea con cualquier cámara", via: "Compartir vía", whatsapp: "WhatsApp", telegram: "Telegram", twitter: "X (Twitter)", facebook: "Facebook", email: "Correo", sms: "SMS", native: "Más...", message_place: "Mira esta zona silenciosa: {name}", message_pack: "Mis lugares en QuietZones:", message_app: "QuietZones — nunca olvides silenciar tu teléfono. Pruébalo:", import_title: "Importar lugares", import_subtitle: "Alguien compartió {count} lugares contigo", import_btn: "Importar", imported: "¡Importado!", go_to_places: "Ir a mis lugares", views: "{count} vistas", not_found: "Enlace inválido o expirado.", back_home: "Volver", select_all: "Todos", deselect_all: "Ninguno" },
   },
   fr: {
-    app_name: "QuietZones",
+    app_name: "Quiet Zones Reminder",
     app_tagline: "Rappel silencieux intelligent",
     nav: { home: "Carte", places: "Lieux", history: "Historique", settings: "Réglages" },
     status: { normal: "Mode sonnerie", silent: "Rappel silence", inside: "Dans", outside_all: "Hors zones", tracking_off: "Suivi en pause", tracking_on: "Suivi actif" },
@@ -35,7 +35,7 @@ const T = {
     share: { share: "Partager", share_place: "Partager ce lieu", share_all: "Partager tous", share_app: "Partager QuietZones", share_app_hint: "Invitez vos amis", copy_link: "Copier", copied: "Copié!", qr_hint: "Scannez avec votre caméra", via: "Partager via", whatsapp: "WhatsApp", telegram: "Telegram", twitter: "X (Twitter)", facebook: "Facebook", email: "E-mail", sms: "SMS", native: "Plus...", message_place: "Voici une zone silencieuse: {name}", message_pack: "Mes lieux QuietZones:", message_app: "QuietZones — n'oubliez plus de silencier votre téléphone. Essayez:", import_title: "Importer les lieux", import_subtitle: "{count} lieux partagés avec vous", import_btn: "Importer", imported: "Importé!", go_to_places: "Voir mes lieux", views: "{count} vues", not_found: "Lien invalide ou expiré.", back_home: "Retour", select_all: "Tout", deselect_all: "Aucun" },
   },
   de: {
-    app_name: "QuietZones",
+    app_name: "Quiet Zones Reminder",
     app_tagline: "Smarter Stille-Erinnerer",
     nav: { home: "Karte", places: "Orte", history: "Verlauf", settings: "Einstellungen" },
     status: { normal: "Klingelmodus", silent: "Stille-Erinnerung", inside: "In", outside_all: "Außerhalb", tracking_off: "Tracking pausiert", tracking_on: "Tracking aktiv" },
@@ -51,7 +51,7 @@ const T = {
     share: { share: "Teilen", share_place: "Diesen Ort teilen", share_all: "Alle teilen", share_app: "QuietZones teilen", share_app_hint: "Lade Freunde ein", copy_link: "Link kopieren", copied: "Kopiert!", qr_hint: "Mit Kamera scannen", via: "Teilen über", whatsapp: "WhatsApp", telegram: "Telegram", twitter: "X (Twitter)", facebook: "Facebook", email: "E-Mail", sms: "SMS", native: "Mehr...", message_place: "Schau dir diese stille Zone an: {name}", message_pack: "Meine QuietZones-Orte:", message_app: "QuietZones — vergiss nie wieder das Stummschalten. Probiere es:", import_title: "Orte importieren", import_subtitle: "{count} Orte mit dir geteilt", import_btn: "Importieren", imported: "Importiert!", go_to_places: "Zu meinen Orten", views: "{count} Aufrufe", not_found: "Ungültiger Link.", back_home: "Zurück", select_all: "Alle", deselect_all: "Keine" },
   },
   it: {
-    app_name: "QuietZones",
+    app_name: "Quiet Zones Reminder",
     app_tagline: "Promemoria silenzioso intelligente",
     nav: { home: "Mappa", places: "Luoghi", history: "Cronologia", settings: "Impostazioni" },
     status: { normal: "Modalità suoneria", silent: "Promemoria silenzio", inside: "In", outside_all: "Fuori zona", tracking_off: "Tracciamento in pausa", tracking_on: "Tracciamento attivo" },
@@ -67,7 +67,7 @@ const T = {
     share: { share: "Condividi", share_place: "Condividi questo luogo", share_all: "Condividi tutti", share_app: "Condividi QuietZones", share_app_hint: "Invita gli amici", copy_link: "Copia link", copied: "Copiato!", qr_hint: "Scansiona con la fotocamera", via: "Condividi via", whatsapp: "WhatsApp", telegram: "Telegram", twitter: "X (Twitter)", facebook: "Facebook", email: "Email", sms: "SMS", native: "Altro...", message_place: "Guarda questa zona silenziosa: {name}", message_pack: "I miei luoghi QuietZones:", message_app: "QuietZones — non dimenticare di silenziare il telefono. Provalo:", import_title: "Importa luoghi", import_subtitle: "{count} luoghi condivisi con te", import_btn: "Importa", imported: "Importato!", go_to_places: "Vai ai miei luoghi", views: "{count} visualizzazioni", not_found: "Link non valido.", back_home: "Indietro", select_all: "Tutti", deselect_all: "Nessuno" },
   },
   pt: {
-    app_name: "QuietZones",
+    app_name: "Quiet Zones Reminder",
     app_tagline: "Lembrete silencioso inteligente",
     nav: { home: "Mapa", places: "Locais", history: "Histórico", settings: "Ajustes" },
     status: { normal: "Modo toque", silent: "Lembrete silêncio", inside: "Em", outside_all: "Fora das zonas", tracking_off: "Rastreamento pausado", tracking_on: "Rastreamento ativo" },
@@ -83,7 +83,7 @@ const T = {
     share: { share: "Compartilhar", share_place: "Compartilhar este local", share_all: "Compartilhar todos", share_app: "Compartilhar QuietZones", share_app_hint: "Convide amigos", copy_link: "Copiar link", copied: "Copiado!", qr_hint: "Escaneie com a câmera", via: "Compartilhar via", whatsapp: "WhatsApp", telegram: "Telegram", twitter: "X (Twitter)", facebook: "Facebook", email: "Email", sms: "SMS", native: "Mais...", message_place: "Veja esta zona silenciosa: {name}", message_pack: "Meus locais QuietZones:", message_app: "QuietZones — nunca esqueça de silenciar. Experimente:", import_title: "Importar locais", import_subtitle: "{count} locais compartilhados", import_btn: "Importar", imported: "Importado!", go_to_places: "Ir aos meus locais", views: "{count} visualizações", not_found: "Link inválido.", back_home: "Voltar", select_all: "Todos", deselect_all: "Nenhum" },
   },
   ru: {
-    app_name: "QuietZones",
+    app_name: "Quiet Zones Reminder",
     app_tagline: "Умный беззвучный напоминатель",
     nav: { home: "Карта", places: "Места", history: "История", settings: "Настройки" },
     status: { normal: "Режим звонка", silent: "Напоминание тишины", inside: "В", outside_all: "Вне зон", tracking_off: "Отслеживание остановлено", tracking_on: "Отслеживание активно" },
@@ -99,7 +99,7 @@ const T = {
     share: { share: "Поделиться", share_place: "Поделиться местом", share_all: "Поделиться всеми", share_app: "Поделиться приложением", share_app_hint: "Пригласите друзей", copy_link: "Копировать", copied: "Скопировано!", qr_hint: "Сканируйте камерой", via: "Поделиться через", whatsapp: "WhatsApp", telegram: "Telegram", twitter: "X (Twitter)", facebook: "Facebook", email: "Email", sms: "SMS", native: "Ещё...", message_place: "Посмотри эту тихую зону: {name}", message_pack: "Мои места QuietZones:", message_app: "QuietZones — не забывайте отключать звук. Попробуйте:", import_title: "Импорт мест", import_subtitle: "{count} мест поделились с вами", import_btn: "Импорт", imported: "Импортировано!", go_to_places: "К моим местам", views: "{count} просмотров", not_found: "Недействительная ссылка.", back_home: "Назад", select_all: "Все", deselect_all: "Ничего" },
   },
   tr: {
-    app_name: "QuietZones",
+    app_name: "Quiet Zones Reminder",
     app_tagline: "Akıllı sessiz hatırlatıcı",
     nav: { home: "Harita", places: "Yerler", history: "Geçmiş", settings: "Ayarlar" },
     status: { normal: "Zil modu", silent: "Sessiz hatırlatması", inside: "İçinde", outside_all: "Bölge dışı", tracking_off: "Takip durduruldu", tracking_on: "Takip aktif" },
@@ -115,7 +115,7 @@ const T = {
     share: { share: "Paylaş", share_place: "Bu yeri paylaş", share_all: "Tümünü paylaş", share_app: "QuietZones'u paylaş", share_app_hint: "Arkadaşları davet et", copy_link: "Bağlantıyı kopyala", copied: "Kopyalandı!", qr_hint: "Kamerayla tara", via: "Paylaş", whatsapp: "WhatsApp", telegram: "Telegram", twitter: "X (Twitter)", facebook: "Facebook", email: "E-posta", sms: "SMS", native: "Daha...", message_place: "Şu sessiz bölgeye bak: {name}", message_pack: "QuietZones yerlerim:", message_app: "QuietZones — telefonu sessize almayı unutma. Dene:", import_title: "Yerleri içe aktar", import_subtitle: "{count} yer sizinle paylaşıldı", import_btn: "İçe aktar", imported: "İçe aktarıldı!", go_to_places: "Yerlerime git", views: "{count} görüntüleme", not_found: "Geçersiz bağlantı.", back_home: "Geri", select_all: "Hepsi", deselect_all: "Hiçbiri" },
   },
   id: {
-    app_name: "QuietZones",
+    app_name: "Quiet Zones Reminder",
     app_tagline: "Pengingat senyap pintar",
     nav: { home: "Peta", places: "Tempat", history: "Riwayat", settings: "Pengaturan" },
     status: { normal: "Mode dering", silent: "Pengingat senyap", inside: "Di", outside_all: "Luar zona", tracking_off: "Pelacakan dijeda", tracking_on: "Pelacakan aktif" },
@@ -131,7 +131,7 @@ const T = {
     share: { share: "Bagikan", share_place: "Bagikan tempat", share_all: "Bagikan semua", share_app: "Bagikan QuietZones", share_app_hint: "Undang teman", copy_link: "Salin tautan", copied: "Tersalin!", qr_hint: "Pindai dengan kamera", via: "Bagikan via", whatsapp: "WhatsApp", telegram: "Telegram", twitter: "X (Twitter)", facebook: "Facebook", email: "Email", sms: "SMS", native: "Lainnya...", message_place: "Lihat zona senyap ini: {name}", message_pack: "Tempat-tempat QuietZones saya:", message_app: "QuietZones — jangan lupa senyapkan ponsel. Coba:", import_title: "Impor tempat", import_subtitle: "{count} tempat dibagikan", import_btn: "Impor", imported: "Berhasil diimpor!", go_to_places: "Ke tempat saya", views: "{count} dilihat", not_found: "Tautan tidak valid.", back_home: "Kembali", select_all: "Semua", deselect_all: "Tidak ada" },
   },
   zh: {
-    app_name: "静音区",
+    app_name: "Quiet Zones Reminder",
     app_tagline: "智能静音提醒",
     nav: { home: "地图", places: "地点", history: "记录", settings: "设置" },
     status: { normal: "响铃模式", silent: "静音提醒", inside: "在", outside_all: "区域外", tracking_off: "跟踪已暂停", tracking_on: "正在跟踪" },
@@ -147,7 +147,7 @@ const T = {
     share: { share: "分享", share_place: "分享此地点", share_all: "分享全部", share_app: "分享应用", share_app_hint: "邀请朋友", copy_link: "复制链接", copied: "已复制！", qr_hint: "用相机扫描", via: "分享到", whatsapp: "WhatsApp", telegram: "Telegram", twitter: "X (Twitter)", facebook: "Facebook", email: "邮件", sms: "短信", native: "更多...", message_place: "看看这个安静的地方：{name}", message_pack: "我的 QuietZones 地点：", message_app: "QuietZones — 别忘了静音手机。试试看：", import_title: "导入地点", import_subtitle: "有人分享了 {count} 个地点", import_btn: "导入", imported: "已导入！", go_to_places: "查看我的地点", views: "{count} 次查看", not_found: "链接无效。", back_home: "返回", select_all: "全选", deselect_all: "全不选" },
   },
   ja: {
-    app_name: "QuietZones",
+    app_name: "Quiet Zones Reminder",
     app_tagline: "スマート消音リマインダー",
     nav: { home: "地図", places: "場所", history: "履歴", settings: "設定" },
     status: { normal: "着信音モード", silent: "消音リマインダー", inside: "内", outside_all: "ゾーン外", tracking_off: "追跡停止中", tracking_on: "追跡中" },
@@ -163,7 +163,7 @@ const T = {
     share: { share: "共有", share_place: "この場所を共有", share_all: "すべて共有", share_app: "アプリを共有", share_app_hint: "友達を招待", copy_link: "リンクをコピー", copied: "コピーしました！", qr_hint: "カメラでスキャン", via: "共有方法", whatsapp: "WhatsApp", telegram: "Telegram", twitter: "X (Twitter)", facebook: "Facebook", email: "メール", sms: "SMS", native: "もっと...", message_place: "この静かな場所を見て: {name}", message_pack: "私の QuietZones の場所:", message_app: "QuietZones — 電話の消音を忘れないで。試してみて:", import_title: "場所をインポート", import_subtitle: "{count} 件の場所が共有されました", import_btn: "インポート", imported: "インポートしました！", go_to_places: "場所一覧へ", views: "{count} 回表示", not_found: "リンクが無効です。", back_home: "戻る", select_all: "すべて", deselect_all: "クリア" },
   },
   ko: {
-    app_name: "QuietZones",
+    app_name: "Quiet Zones Reminder",
     app_tagline: "스마트 무음 알리미",
     nav: { home: "지도", places: "장소", history: "기록", settings: "설정" },
     status: { normal: "벨소리 모드", silent: "무음 알림", inside: "내부", outside_all: "구역 외부", tracking_off: "추적 일시중지", tracking_on: "추적 중" },
@@ -179,7 +179,7 @@ const T = {
     share: { share: "공유", share_place: "이 장소 공유", share_all: "모두 공유", share_app: "앱 공유", share_app_hint: "친구 초대하기", copy_link: "링크 복사", copied: "복사됨!", qr_hint: "카메라로 스캔", via: "공유 방법", whatsapp: "WhatsApp", telegram: "Telegram", twitter: "X (Twitter)", facebook: "Facebook", email: "이메일", sms: "SMS", native: "더보기...", message_place: "이 조용한 곳을 봐: {name}", message_pack: "내 QuietZones 장소들:", message_app: "QuietZones — 휴대폰 무음 잊지 마. 한번 써봐:", import_title: "장소 가져오기", import_subtitle: "{count}개 장소가 공유되었습니다", import_btn: "가져오기", imported: "가져왔습니다!", go_to_places: "내 장소로", views: "{count} 조회", not_found: "유효하지 않은 링크입니다.", back_home: "뒤로", select_all: "전체", deselect_all: "해제" },
   },
   hi: {
-    app_name: "QuietZones",
+    app_name: "Quiet Zones Reminder",
     app_tagline: "स्मार्ट साइलेंट रिमाइंडर",
     nav: { home: "मानचित्र", places: "स्थान", history: "इतिहास", settings: "सेटिंग्स" },
     status: { normal: "रिंगर मोड", silent: "साइलेंट रिमाइंडर", inside: "अंदर", outside_all: "क्षेत्र के बाहर", tracking_off: "ट्रैकिंग रुकी", tracking_on: "ट्रैकिंग चालू" },
@@ -195,7 +195,7 @@ const T = {
     share: { share: "साझा करें", share_place: "इस स्थान को साझा करें", share_all: "सभी साझा करें", share_app: "ऐप साझा करें", share_app_hint: "दोस्तों को आमंत्रित करें", copy_link: "लिंक कॉपी करें", copied: "कॉपी हो गया!", qr_hint: "कैमरे से स्कैन करें", via: "साझा करें", whatsapp: "WhatsApp", telegram: "Telegram", twitter: "X (Twitter)", facebook: "Facebook", email: "ईमेल", sms: "SMS", native: "अधिक...", message_place: "इस शांत क्षेत्र को देखें: {name}", message_pack: "मेरे QuietZones स्थान:", message_app: "QuietZones — फोन साइलेंट करना मत भूलें। आज़माएं:", import_title: "स्थान आयात करें", import_subtitle: "{count} स्थान आपके साथ साझा किए गए", import_btn: "आयात करें", imported: "आयात हो गया!", go_to_places: "मेरे स्थानों पर जाएं", views: "{count} दृश्य", not_found: "अमान्य लिंक।", back_home: "वापस", select_all: "सभी", deselect_all: "कोई नहीं" },
   },
   fa: {
-    app_name: "QuietZones",
+    app_name: "Quiet Zones Reminder",
     app_tagline: "یادآور سکوت هوشمند",
     nav: { home: "نقشه", places: "مکان‌ها", history: "تاریخچه", settings: "تنظیمات" },
     status: { normal: "حالت زنگ", silent: "یادآور سکوت", inside: "داخل", outside_all: "بیرون از مناطق", tracking_off: "ردیابی متوقف", tracking_on: "ردیابی فعال" },
@@ -211,7 +211,7 @@ const T = {
     share: { share: "اشتراک‌گذاری", share_place: "این مکان را به اشتراک بگذارید", share_all: "همه را به اشتراک بگذار", share_app: "اشتراک برنامه", share_app_hint: "دعوت از دوستان", copy_link: "کپی لینک", copied: "کپی شد!", qr_hint: "با دوربین اسکن کنید", via: "اشتراک از طریق", whatsapp: "WhatsApp", telegram: "Telegram", twitter: "X (Twitter)", facebook: "Facebook", email: "ایمیل", sms: "پیامک", native: "بیشتر...", message_place: "این منطقه ساکت را ببین: {name}", message_pack: "مکان‌های QuietZones من:", message_app: "QuietZones — فراموش نکن تلفن را بی‌صدا کنی. امتحان کن:", import_title: "وارد کردن مکان‌ها", import_subtitle: "{count} مکان با شما به اشتراک گذاشته شده", import_btn: "وارد کردن", imported: "وارد شد!", go_to_places: "به مکان‌های من", views: "{count} بازدید", not_found: "لینک نامعتبر.", back_home: "بازگشت", select_all: "همه", deselect_all: "هیچ‌کدام" },
   },
   ur: {
-    app_name: "QuietZones",
+    app_name: "Quiet Zones Reminder",
     app_tagline: "ذہین خاموش یاد دہانی",
     nav: { home: "نقشہ", places: "مقامات", history: "تاریخ", settings: "ترتیبات" },
     status: { normal: "رنگر موڈ", silent: "خاموش یاد دہانی", inside: "اندر", outside_all: "زون سے باہر", tracking_off: "ٹریکنگ روکی گئی", tracking_on: "ٹریکنگ فعال" },
@@ -225,22 +225,6 @@ const T = {
     common: { saving: "محفوظ ہو رہا ہے...", loading: "لوڈ ہو رہا ہے...", yes: "ہاں", no: "نہیں", meters_short: "م", km_short: "کلو", away: "دور" },
     action: { silent: "خاموش", ring: "رنگر", title: "داخلے پر عمل" },
     share: { share: "شیئر کریں", share_place: "اس مقام کو شیئر کریں", share_all: "سب شیئر کریں", share_app: "ایپ شیئر کریں", share_app_hint: "دوستوں کو مدعو کریں", copy_link: "لنک کاپی کریں", copied: "کاپی ہو گیا!", qr_hint: "کیمرہ سے اسکین کریں", via: "شیئر کریں", whatsapp: "WhatsApp", telegram: "Telegram", twitter: "X (Twitter)", facebook: "Facebook", email: "ای میل", sms: "SMS", native: "مزید...", message_place: "یہ خاموش جگہ دیکھیں: {name}", message_pack: "میرے QuietZones مقامات:", message_app: "QuietZones — فون خاموش کرنا مت بھولیں۔ آزمائیں:", import_title: "مقامات درآمد کریں", import_subtitle: "{count} مقامات شیئر کیے گئے", import_btn: "درآمد کریں", imported: "درآمد ہو گیا!", go_to_places: "میرے مقامات", views: "{count} مناظر", not_found: "غلط لنک۔", back_home: "واپس", select_all: "سب", deselect_all: "کوئی نہیں" },
-  },
-  he: {
-    app_name: "QuietZones",
-    app_tagline: "תזכורת שקט חכמה",
-    nav: { home: "מפה", places: "מקומות", history: "היסטוריה", settings: "הגדרות" },
-    status: { normal: "מצב צלצול", silent: "תזכורת שקט", inside: "בתוך", outside_all: "מחוץ לאזורים", tracking_off: "מעקב מושהה", tracking_on: "מעקב פעיל" },
-    actions: { add_place: "הוסף מקום", edit: "ערוך", delete: "מחק", save: "שמור", cancel: "בטל", enable_tracking: "התחל מעקב", disable_tracking: "עצור מעקב", enable_notifications: "הפעל התראות", use_current_location: "המיקום שלי", pick_on_map: "הקש על המפה", clear_history: "נקה היסטוריה", try_demo: "נסה דמו", search_place: "חפש מקום...", tap_map_hint: "הקש על המפה" },
-    place: { name: "שם המקום", name_ph: "מסגד, ספרייה...", category: "קטגוריה", radius: "רדיוס אזור", meters: "מטרים", notes: "הערות", notes_ph: "תזכורת אישית", lat: "קו רוחב", lng: "קו אורך", enabled: "פעיל", action: "פעולה" },
-    categories: { mosque: "מסגד", church: "כנסייה", school: "בית ספר", university: "אוניברסיטה", hospital: "בית חולים", library: "ספרייה", work: "עבודה", home: "בית", other: "אחר" },
-    home: { title: "המפה שלך", no_location: "ממתין למיקום...", grant_location: "אפשר גישה למיקום.", retry: "נסה שוב", nearby: "בקרבת מקום", no_places: "אין מקומות שמורים", no_places_hint: "הקש + להוסיף אזור." },
-    history: { title: "פעילות", empty: "אין פעילות.", entered: "כניסה", exited: "יציאה" },
-    settings: { title: "הגדרות", language: "שפה", default_radius: "רדיוס ברירת מחדל", notifications: "התראות", notifications_hint: "התראה בכניסה/יציאה מאזור.", sound: "צליל התראה", auto_track: "התחל GPS אוטומטית", about: "אודות", about_text: "אב-טיפוס ווב חינמי. ווב לא יכול להשתיק טלפון אוטומטית; השתמש באפליקציית Android מקורית. iOS אינו מאפשר לאפליקציות צד שלישי לשנות מצב שקט.", data: "הנתונים שלך", device_id: "מזהה מכשיר", reset: "אפס הכל" },
-    notif: { entered_title: "נכנסת ל{place}", entered_body: "אתה ב{category}. אנא השתק את הטלפון.", entered_body_ring: "אתה ב{category}. הפעל צלצול.", exited_title: "יצאת מ{place}", exited_body: "אפשר לחזור למצב רגיל." },
-    common: { saving: "שומר...", loading: "טוען...", yes: "כן", no: "לא", meters_short: "מ׳", km_short: "ק״מ", away: "מרוחק" },
-    action: { silent: "שקט", ring: "צלצול", title: "פעולה בכניסה" },
-    share: { share: "שתף", share_place: "שתף מקום זה", share_all: "שתף הכל", share_app: "שתף את האפליקציה", share_app_hint: "הזמן חברים", copy_link: "העתק קישור", copied: "הועתק!", qr_hint: "סרוק עם מצלמה", via: "שתף דרך", whatsapp: "WhatsApp", telegram: "Telegram", twitter: "X (Twitter)", facebook: "Facebook", email: "אימייל", sms: "SMS", native: "עוד...", message_place: "ראה את האזור השקט הזה: {name}", message_pack: "המקומות שלי ב-QuietZones:", message_app: "QuietZones — אל תשכח להשתיק את הטלפון. נסה:", import_title: "ייבוא מקומות", import_subtitle: "{count} מקומות שותפו איתך", import_btn: "ייבא", imported: "יובא!", go_to_places: "למקומות שלי", views: "{count} צפיות", not_found: "קישור לא תקין.", back_home: "חזור", select_all: "הכל", deselect_all: "כלום" },
   },
 };
 
