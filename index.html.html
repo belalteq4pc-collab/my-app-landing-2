@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAISOFTAPP - Making Life Easy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* شريط التنقل العلوي وزر اللغة */
+        .navbar {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        /* لضمان بقاء زر اللغة في المكان الصحيح حسب اتجاه الصفحة */
+        html[dir="rtl"] .navbar { justify-content: flex-start; }
+        html[dir="ltr"] .navbar { justify-content: flex-end; }
+
+        .lang-switcher {
+            position: relative;
+            display: inline-block;
+        }
+
+        .lang-btn {
+            background-color: #1e293b;
+            color: white;
+            border: 1px solid #475569;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn:hover {
+            border-color: #3b82f6;
+            background-color: #2b449c;
+        }
+
+        .lang-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            margin-top: 5px;
+            background-color: #1e293b;
+            min-width: 120px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
+            border-radius: 8px;
+            overflow: hidden;
+            z-index: 1001;
+            border: 1px solid #334155;
+        }
+
+        html[dir="rtl"] .lang-dropdown { right: 0; }
+        html[dir="ltr"] .lang-dropdown { left: 0; }
+
+        .lang-dropdown a {
+            color: white;
+            padding: 10px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+            text-align: center;
+        }
+
+        .lang-dropdown a:hover {
+            background-color: #3b82f6;
+        }
+
+        .show { display: block; }
+
+        /* قسم الهيدر والبطل */
+        .hero-section {
+            background: linear-gradient(135deg, #2b449c 0%, #1e293b 100%);
+            padding: 140px 20px 80px 20px; 
+            text-align: center;
+            border-bottom: 4px solid #3b82f6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .logo-container {
+            margin-bottom: 20px;
+        }
+
+        .brand-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            color: #ffffff;
+            margin-top: 10px;
+            text-transform: uppercase;
+        }
+
+        .brand-slogan {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 6px;
+            color: #93c5fd;
+            text-transform: uppercase;
+            margin-bottom: 35px;
+            font-weight: 500;
+        }
+
+        .hero-section h1 {
+            font-size: 2.3rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+            color: #cbd5e1;
+        }
+
+        /* أزرار اتخاذ الإجراء */
+        .cta-btn {
+            display: inline-block;
+            background-color: #3b82f6;
+            color: white;
+            text-decoration: none;
+            padding: 14px 40px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .cta-btn:hover {
+            background-color: #2563eb;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+        }
+
+        /* قسم الخدمات والمميزات */
+        .services-section {
+            padding: 80px 20px;
+            background-color: #0f172a;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 50px;
+            color: #ffffff;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: #3b82f6;
+            margin: 10px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: #1e293b;
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid #334155;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #3b82f6;
+        }
+
+        .card i {
+            font-size: 2.5rem;
+            color: #3b82f6;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .card p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+
+        /* قسم التواصل وحفظ الاهتمام */
+        .contact-section {
+            background-color: #1e293b;
+            padding: 60px 20px;
+            text-align: center;
+            border-top: 1px solid #334155;
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: 30px auto 0 auto;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px;
+            background-color: #0f172a;
+            border: 1px solid #475569;
+            border-radius: 30px;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-control:focus {
+            border-color: #3b82f6;
+        }
+
+        /* الفوتر */
+        footer {
+            background-color: #0f172a;
+            text-align: center;
+            padding: 25px;
+            color: #64748b;
+            font-size: 0.9rem;
+            border-top: 1px solid #1e293b;
+        }
+
+        /* التوافق مع الهواتف */
+        @media (max-width: 768px) {
+            .brand-name { font-size: 2rem; }
+            .brand-slogan { font-size: 0.9rem; letter-spacing: 3px; }
+            .hero-section h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- شريط التنقل العلوي مع زر اختيار اللغة -->
+    <nav class="navbar">
+        <div class="lang-switcher">
+            <button class="lang-btn" onclick="toggleDropdown()">
+                <i class="fa-solid fa-globe"></i> <span id="current-lang">العربية</span> <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem;"></i>
+            </button>
+            <div class="lang-dropdown" id="langDropdown">
+                <a href="#" onclick="changeLanguage('ar')">العربية</a>
+                <a href="#" onclick="changeLanguage('en')">English</a>
+                <a href="#" onclick="changeLanguage('de')">Deutsch</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="container">
+            <div class="logo-container">
+                <svg width="120" height="120" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="none"/>
+                    <path d="M20,38 C30,28 45,28 55,38 C65,48 80,48 90,38 C82,24 68,15 50,15 C32,15 18,24 10,38 Z" fill="#ffffff"/>
+                    <path d="M12,50 C25,42 40,42 52,50 C65,58 80,58 88,50 C89,53 89,56 88,59 C78,66 64,66 52,59 C40,51 25,51 12,59 C11,56 11,53 12,50 Z" fill="#ffffff"/>
+                    <path d="M20,65 C30,58 45,58 55,65 C65,72 80,72 90,65 C82,78 68,85 50,85 C32,85 18,78 10,65 Z" fill="#ffffff"/>
+                </svg>
+                <div class="brand-name">baisoftapp</div>
+                <div class="brand-slogan">making life easy</div>
+            </div>
+
+            <h1 id="hero-title">حلول برمجية ذكية تجعل حياتك أسهل</h1>
+            <p id="hero-desc">نحن في BAISOFTAPP نبتكر تطبيقات وحلولاً تقنية مخصصة تهدف إلى تبسيط أعمالك اليومية، ورفع الكفاءة التشغيلية لأعلى المستويات بأحدث المعايير العالمية.</p>
+            
+            <!-- تم التعديل هنا: الزر يفتح الإيميل مباشرة ومجهز برابط البريد الخاص بك -->
+            <a href="mailto:belalteq4pc@gmail.com" class="cta-btn" id="hero-cta">تواصل معنا الآن</a>
+        </div>
+    </header>
+
+    <section class="services-section">
+        <div class="container">
+            <h2 class="section-title" id="services-title">ماذا نقدم في BAISOFTAPP؟</h2>
+            <div class="grid">
+                
+                <div class="card">
+                    <i class="fa-solid fa-laptop-code"></i>
+                    <h3 id="srv1-title">تطوير الأنظمة الذكية</h3>
+                    <p id="srv1-desc">بناء وتطوير منصات برمجية متكاملة وسحابية تلبي احتياجات شركتك بدقة ومرونة تامة.</p>
+                </div>
+
+                <div class="card">
+                    <i class="fa-solid fa-mobile-screen"></i>
+                    <h3 id="srv2-title">تطبيقات الهواتف</h3>
+                    <p id="srv2-desc">تصميم وتطوير تطبيقات أندرويد و iOS بواجهات عصرية وتجربة مستخدم سلسة تجعل الوصول لخدماتك أسهل.</p>
+                </div>
+
+                <div class="card">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <h3 id="srv3-title">أتمتة الأعمال</h3>
+                    <p id="srv3-desc">تحويل العمليات اليدوية المعقدة إلى عمليات رقمية وتلقائية بالكامل لتوفير الوقت والجهد وتفادي الأخطاء.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 id="contact-title">كن أول من يختبر حلولنا المستقبلية</h2>
+            <p style="color: #94a3b8; margin-top: 10px;" id="contact-desc">اترك بريدك الإلكتروني، وسيقوم فريقنا التقني بالتواصل معك لاستشارتك مجاناً.</p>
+            
+            <div class="form-container">
+                <form id="contact-form" onsubmit="handleFormSubmit(event)">
+                    <input type="email" id="form-input" class="form-control" placeholder="أدخل بريدك الإلكتروني هنا" required>
+                    <button type="submit" class="cta-btn" id="form-btn" style="border: none; width: 100%; cursor: pointer;">أرسل الطلب</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p id="footer-text">&copy; 2026 جميع الحقوق محفوظة لـ BAISOFTAPP.</p>
+    </footer>
+
+    <script>
+        function toggleDropdown() {
+            document.getElementById("langDropdown").classList.toggle("show");
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.lang-btn') && !event.target.matches('.lang-btn *')) {
+                var dropdowns = document.getElementsByClassName("lang-dropdown");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+
+        const translations = {
+            ar: {
+                langName: "العربية",
+                heroTitle: "حلول برمجية ذكية تجعل حياتك أسهل",
+                heroDesc: "نحن في BAISOFTAPP نبتكر تطبيقات وحلولاً تقنية مخصصة تهدف إلى تبسيط أعمالك اليومية، ورفع الكفاءة التشغيلية لأعلى المستويات بأحدث المعايير العالمية.",
+                heroCta: "تواصل معنا الآن",
+                servicesTitle: "ماذا نقدم في BAISOFTAPP؟",
+                srv1Title: "تطوير الأنظمة الذكية",
+                srv1Desc: "بناء وتطوير منصات برمجية متكاملة وسحابية تلبي احتياجات شركتك بدقة ومرونة تامة.",
+                srv2Title: "تطبيقات الهواتف",
+                srv2Desc: "تصميم وتطوير تطبيقات أندرويد و iOS بواجهات عصرية وتجربة مستخدم سلسة تجعل الوصول لخدماتك أسهل.",
+                srv3Title: "أتمتة الأعمال",
+                srv3Desc: "تحويل العمليات اليدوية المعقدة إلى عمليات رقمية وتلقائية بالكامل لتوفير الوقت والجهد وتفادي الأخطاء.",
+                contactTitle: "كن أول من يختبر حلولنا المستقبلية",
+                contactDesc: "اترك بريدك الإلكتروني، وسيقوم فريقنا التقني بالتواصل معك لاستشارتك مجاناً.",
+                formPlaceholder: "أدخل بريدك الإلكتروني هنا",
+                formBtn: "أرسل الطلب",
+                footerText: "© 2026 جميع الحقوق محفوظة لـ BAISOFTAPP.",
+                alertMsg: "شكراً لتواصلك مع BAISOFTAPP! سنتواصل معك قريباً جداً."
+            },
+            en: {
+                langName: "English",
+                heroTitle: "Smart Software Solutions That Make Life Easy",
+                heroDesc: "At BAISOFTAPP, we innovate custom applications and technical solutions aimed at simplifying your daily operations and raising efficiency to the highest global standards.",
+                heroCta: "Contact Us Now",
+                servicesTitle: "What Do We Offer at BAISOFTAPP?",
+                srv1Title: "Smart Systems Development",
+                srv1Desc: "Building and developing integrated, cloud-based software platforms that precisely meet your business needs.",
+                srv2Title: "Mobile Applications",
+                srv2Desc: "Designing and developing Android and iOS apps with modern interfaces and seamless user experience.",
+                srv3Title: "Business Automation",
+                srv3Desc: "Transforming complex manual operations into fully automated digital processes to save time and prevent errors.",
+                contactTitle: "Be the First to Experience Our Future Solutions",
+                contactDesc: "Leave your email, and our technical team will reach out to you for a free consultation.",
+                formPlaceholder: "Enter your email here",
+                formBtn: "Submit Request",
+                footerText: "© 2026 BAISOFTAPP. All rights reserved.",
+                alertMsg: "Thank you for contacting BAISOFTAPP! We will get back to you very soon."
+            },
+            de: {
+                langName: "Deutsch",
+                heroTitle: "Intelligente Softwarelösungen, die das Leben leichter machen",
+                heroDesc: "Wir bei BAISOFTAPP entwickeln maßgeschneiderte Anwendungen und technologische Lösungen, um Ihre täglichen Abläufe zu vereinfachen und die Effizienz nach höchsten globalen Standards zu steigern.",
+                heroCta: "Kontaktieren Sie uns",
+                servicesTitle: "Was bieten wir bei BAISOFTAPP an?",
+                srv1Title: "Entwicklung smarter Systeme",
+                srv1Desc: "Aufbau und Entwicklung integrierter, cloudbasierter Softwareplattformen, die exakt auf Ihre Geschäftsanforderungen zugeschnitten sind.",
+                srv2Title: "Mobile Apps",
+                srv2Desc: "Konzeption und Entwicklung von Android- und iOS-Apps mit modernen Benutzeroberflächen und nahtloser User Experience.",
+                srv3Title: "Geschäftsprozessautomatisierung",
+                srv3Desc: "Transformation komplexer manueller Abläufe in vollautomatische digitale Prozesse, um Zeit zu sparen und Fehler zu vermeiden.",
+                contactTitle: "Erleben Sie als Erster unsere Zukunftslösungen",
+                contactDesc: "Hinterlassen Sie Ihre E-Mail-Adresse und unser technisches Team wird sich für eine kostenlose Beratung mit Ihnen in Verbindung setzen.",
+                formPlaceholder: "Geben Sie hier Ihre E-Mail-Adresse ein",
+                formBtn: "Anfrage senden",
+                footerText: "© 2026 BAISOFTAPP. Alle Rechte vorbehalten.",
+                alertMsg: "Vielen Dank für Ihre Kontaktaufnahme mit BAISOFTAPP! Wir werden uns in Kürze bei Ihnen melden."
+            }
+        };
+
+        let currentLang = 'ar';
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            const htmlTag = document.documentElement;
+            htmlTag.setAttribute("lang", lang);
+            
+            if (lang === 'ar') {
+                htmlTag.setAttribute("dir", "rtl");
+                document.body.style.fontFamily = "'Cairo', sans-serif";
+            } else {
+                htmlTag.setAttribute("dir", "ltr");
+                document.body.style.fontFamily = "'Orbitron', 'Cairo', sans-serif";
+            }
+
+            document.getElementById("current-lang").innerText = translations[lang].langName;
+
+            document.getElementById("hero-title").innerText = translations[lang].heroTitle;
+            document.getElementById("hero-desc").innerText = translations[lang].heroDesc;
+            document.getElementById("hero-cta").innerText = translations[lang].heroCta;
+            
+            document.getElementById("services-title").innerText = translations[lang].servicesTitle;
+            document.getElementById("srv1-title").innerText = translations[lang].srv1Title;
+            document.getElementById("srv1-desc").innerText = translations[lang].srv1Desc;
+            document.getElementById("srv2-title").innerText = translations[lang].srv2Title;
+            document.getElementById("srv2-desc").innerText = translations[lang].srv2Desc;
+            document.getElementById("srv3-title").innerText = translations[lang].srv3Title;
+            document.getElementById("srv3-desc").innerText = translations[lang].srv3Desc;
+            
+            document.getElementById("contact-title").innerText = translations[lang].contactTitle;
+            document.getElementById("contact-desc").innerText = translations[lang].contactDesc;
+            document.getElementById("form-input").setAttribute("placeholder", translations[lang].formPlaceholder);
+            document.getElementById("form-btn").innerText = translations[lang].formBtn;
+            
+            document.getElementById("footer-text").innerText = translations[lang].footerText;
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            alert(translations[currentLang].alertMsg);
+            document.getElementById("form-input").value = "";
+        }
+    </script>
+</body>
+</html>
